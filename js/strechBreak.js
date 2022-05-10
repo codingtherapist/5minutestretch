@@ -1,105 +1,116 @@
-const eyesup = document.querySelector('#eyesup')
-const neckup = document.querySelector('#neckup')
-const shouldersup = document.querySelector('#shouldersup')
-const handsup = document.querySelector('#handsup')
+// common practice is to maintain state in a central JSON object like the one below.
+// using a central state from the get-go will make it way easier to develop and scale your app.
+// this is a very crude version of that. Things like https://redux.js.org/ have made maintaining
+// centralized state into an art form.
+// often, state is not local in the browser though, it sits in a database like Firebase (realtime JSON data structure in the cloud) for example.
+const state = {
+  eyes: {
+    visible: false,
+    container: "#eyesup",
+    uiElement: "#eyesnext",
+    images: [
+      "eyes/adream.png",
+      "eyes/blurfloat.gif",
+      "eyePalming.gif",
+      "palm.gif",
+    ],
+  },
+  neck: {
+    visible: false,
+    container: "#neckup",
+    uiElement: "#necknext",
+    images: ["blue.png", "bluecity.png", "bluecloud.png", "cloudgif.jpeg"],
+  },
+  shoulders: {
+    visible: false,
+    container: "#shouldersup",
+    uiElement: "#shouldersnext",
+    images: ["mushroom.png", "candle.png"],
+  },
+  hands: {
+    visible: false,
+    container: "#handsup",
+    uiElement: "#handnext",
+    images: ["rainy.gif", "pinkswirl.png"],
+  },
+};
 
+// Most JS frameworks have some kind of starting point, an initialization step where things are set up. This is the crude vanilla version of that.
 
-document.querySelector('#eyesnext').addEventListener('click', eyesnext)
-//document.querySelector('#necknext').addEventListener('click', necknext)
-//document.querySelector('#shouldersnext').addEventListener('click', shouldersnext)
-//document.querySelector('#handsnext').addEventListener('click', handsnext)
-
-
-function eyesnext(){
-    let filePath = 'img/eyes/'
-    let eyeImages = ['adream.png','background1.png','blurfloat.gif', 'couchlife.png','driftfloat.gif']
-//run random function so it spits out random number
-
-//set src for eyes up to whatever image in our array has the index of the random number that was spit out
-eyesup.src = filePath + eyeImages[getRandomInt(5)]
-//google how to set up src using javascript
-//add function so that it doesnt toggle
-    neckup.classList.add('hidden')
-    shouldersup.classList.add('hidden')
-    handsup.classList.add('hidden')
-    eyesup.classList.toggle('hidden')
-}
-
-/*
-function necknext(){
-    eyesup.classList.add('hidden')
-    shouldersup.classList.add('hidden')
-    handsup.classList.add('hidden')
-    neckup.classList.toggle('hidden')
-}
-
-
-function shouldersnext(){
-    eyesup.classList.add('hidden')
-    handsup.classList.add('hidden')
-    neckup.classList.add('hidden')
-    shouldersup.classList.toggle('hidden')
-}
-
-
-function handsnext(){
-    eyesup.classList.add('hidden')
-    shouldersup.classList.add('hidden')
-    neckup.classList.add('hidden')
-    handsup.classList.toggle('hidden')
-}
-
-*/
-
-//create a function that creates random pictures to be shown upon a click event
-
-
-//Create a collection of images for each click event (applies to each click event)
-// create an aray with 5 image strings in it
-//finds the file path and calls it
-
-
-
-//console.log(filePath + eyeImages[0])
-//create variable that holds image paths
-
-//where are you going to store images? [in a folder, in its own folder? what would  make this easiest?]
-//pull images from where they are located and put them in an array
-
-//how do you want it selected randomly
-//want a randomized number spit out from 0-4
-
-function getRandomInt(max) {
-    return Math.floor(Math.random() * max);
+function init() {
+  // Going through each item in our state array.
+  // Out of the various looping mechanisms Javascript has to offer, for...in iterates through a JSON object's keys.
+  for (const key in state) {
+    // just good practice to put things in a try/catch. Not mandatory, but recommended.
+    // it helps you take control of what happens if unexpected errors occur.
+    // you can set up alternate behaviour, or just a notification for example.
+    try {
+      // inside the for...in loop, grab the value of the corresponding current key.
+      const currentStateItem = state[key];
+      // currentStateItem now provides a few things like 'container' and 'uiElement' that you can use to do stuff with... like, send it to querySelector.
+      const uiElementDOMNode = document.querySelector(
+        currentStateItem.uiElement
+      );
+      // ... or set an onclick event.
+      currentStateItem.clickListener = uiElementDOMNode.addEventListener(
+        "click",
+        // this is a modern JS way of defining a function.
+        // It's almost the same as saying 'function () {}' except that
+        // this way '() => {}' makes the scope of the function open so you can use variables
+        // outside the event listener definition. In this case, we're wanting to pass on
+        // the currentStatItem to our click event callback function.
+        // the below method is the only way you can pass variables to the click event callback:
+        // normally the callback only takes one variable which is the event itself.
+        // would be helpful to step through this in the Chrome Dev Tools debugger to understand how it works.
+        () => {
+          // we pass the key and the value corresponding to that key. We'll need both later on.
+          selectExercise({ key, item: currentStateItem });
+        }
+      );
+    } catch (error) {
+      console.error(
+        `Error intialising element ${key}. Check your HTML has the right identifiers.`
+      );
+    }
   }
-  
+}
 
+function hideEverythingExcept(args) {
+  // Just my own personal practice of passing variables to functions.
+  // this way, I know what they're called.
+  // check https://www.freecodecamp.org/news/how-the-question-mark-works-in-javascript/
+  const skipThis = args?.skipThis;
+  // loop through the state again, this time to hide stuff.
+  // an example of how you now benefit from having the state in one place.
+  // this loop's contents are very similar to what's happening in the init function
+  for (const key in state) {
+    if (key === skipThis) continue;
+    const currentStateItem = state[key];
+    const currentDOMNode = document.querySelector(currentStateItem.container);
+    currentDOMNode.classList.add("hidden");
+  }
+}
 
+function selectExercise(args) {
+  const key = args?.key;
+  const item = args?.item;
+  // the parameter I'm passing into the below function is inside a JSON object
+  // the reason for that is just so that it's easier for me to remember
+  // exactly what I'm passing.
+  // the key is from the click event, which was set up in the init() loop
+  hideEverythingExcept({ skipThis: key });
+  // after everything except the subject of the click event is hidden,
+  // change its visibility and image src.
+  if (item) {
+    // you already figured out how this random pick was made universal.
+    const randomPick = Math.floor(Math.random() * item.images.length);
+    // the below is basically copy/paste from your previous code
+    const currentDOMNode = document.querySelector(item.container);
+    currentDOMNode.src = `img/${item.images[randomPick]}`;
+    currentDOMNode.classList.toggle("hidden");
+  }
 
+  // TODO: this is where you'll set your countdown timer.
+}
 
-
-
-//eye click event (5 gifs) [how are you going to do this?]
-
-//one image randomly displays per each click
-//whatever picture is already up, needs to go to hidden
-//select one photo out of 5 in eyeclick array
-
-
-//want one randomly selected
-//need function that randomizes a number 0-4 that corresponds with image in array
-//once number is selected in array
-//pull corresponding number image from array
-//toggle image selected from hidden to displayed in display box
-
-
-
-//shoulder click event (5 images)
-//one image randomly displays per each click
-
-// neck click event (5 images)
-//one image randomly displays per each click
-
-//hands click event (5 images)
-//one image randomly displays per each click
-
+init();

@@ -1,74 +1,68 @@
 /* Box Model Hack */
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 /* Clear fix hack */
 .clearfix:after {
-    content: ".";
-    display: block;
-    clear: both;
-    visibility: hidden;
-    line-height: 0;
-    height: 0;
+  content: ".";
+  display: block;
+  clear: both;
+  visibility: hidden;
+  line-height: 0;
+  height: 0;
 }
 
 .clear {
-   clear: both;
+  clear: both;
 }
 
 /******************************************
 /* BASE STYLES
 /*******************************************/
-.hidden{
-	display: none;
+.hidden {
+  display: none;
 }
 
+html {
+  background: url(../img/double.png) no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
 
+body {
+  color: white;
+}
 
-html { 
-    background: url(../img/double.png) no-repeat center center fixed; 
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-   
-  }
+h1 {
+  text-align: center;
+  color: black;
+  font-family: monospace;
+}
 
-  body {
-      color: white;
-      
-  }
-  
-  h1 {
-    text-align: center;
-    color:black;
-    font-family: monospace;
-  }
+/* start timer */
+#start {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 75px;
+}
 
-  /* start timer */
-  #start {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 75px;
-  
-  }
-
-  #start > button{
-    background-color: bisque;
-  }
+#start > button {
+  background-color: bisque;
+}
 
 main {
-  
-  }
+}
 
 /* stretch pop ups */
 #display {
-height: 350 px;
-display: flex;
-justify-content: center;
-align-items: center;
+  height: 350 px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* display images */
@@ -76,18 +70,18 @@ img {
   width: 300px;
   height: 300px;
   border-radius: 50%;
--webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
--moz-box-shadow: 10px 10px 16px #000000;
--webkit-box-shadow: 10px 10px 16px #000000;
-box-shadow: 10px 10px 16px #000000;
-x-shadow: 10px 10px 16px #000000;
-}  
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -moz-box-shadow: 10px 10px 16px #000000;
+  -webkit-box-shadow: 10px 10px 16px #000000;
+  box-shadow: 10px 10px 16px #000000;
+  x-shadow: 10px 10px 16px #000000;
+}
 
- /* choose a body part to stretch*/
- .intro {
+/* choose a body part to stretch*/
+.intro {
   font-family: monospace;
   display: flex;
   justify-content: center;
@@ -96,18 +90,18 @@ x-shadow: 10px 10px 16px #000000;
 
 /* strtech icon selection grid */
 #stretch {
-    width: 30%;
-    display: flex;
-    margin: 0 auto;
-    padding: 50px; 
-    text-align: center;
-    justify-content: space-between;
+  width: 30%;
+  display: flex;
+  margin: 0 auto;
+  padding: 50px;
+  text-align: center;
+  justify-content: space-between;
 
-    
-    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
-  }
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
 
-  /*icons to click
+/*icons to click
 .click{
     height: 90px;
     width: 90px; 
@@ -118,16 +112,16 @@ x-shadow: 10px 10px 16px #000000;
     margin: auto;
 }*/
 
-button{
+button {
   -webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
--moz-box-shadow: 10px 10px 16px #000000;
--webkit-box-shadow: 10px 10px 16px #000000;
-box-shadow: 10px 10px 16px #000000;
-x-shadow: 10px 10px 16px #000000;
-border-radius: 6px;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  -moz-box-shadow: 10px 10px 16px #000000;
+  -webkit-box-shadow: 10px 10px 16px #000000;
+  box-shadow: 10px 10px 16px #000000;
+  x-shadow: 10px 10px 16px #000000;
+  border-radius: 6px;
 }
 
 button {
@@ -138,24 +132,20 @@ button:hover {
   background-color: brown; /* Green */
   color: white;
 }
-  h3{
-    padding 100px;
-    border-radius: 50%;
-  }
+h3 {
+  padding: 100px;
+  border-radius: 50%;
+}
 
-
-
-  /* strtech icon selection icons*/
+/* strtech icon selection icons*/
 
 /******************************************
 /* LAYOUT
 /*******************************************/
 header {
-
 }
 
 footer {
-
 }
 
 /******************************************
