@@ -3,6 +3,24 @@
 // this is a very crude version of that. Things like https://redux.js.org/ have made maintaining
 // centralized state into an art form.
 // often, state is not local in the browser though, it sits in a database like Firebase (realtime JSON data structure in the cloud) for example.
+
+//timer object
+const startingMinutes = 5;
+let time = startingMinutes * 60;
+
+const countdownEl = document.getElementById("countdown");
+
+setInterval(updateCountdown, 1000);
+
+function updateCountdown() {
+  const minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+
+  countdownEl.innerHTML = `${minutes}: ${seconds}`;
+  time--;
+}
+
+//stretch images
 const state = {
   eyes: {
     visible: false,
@@ -34,7 +52,6 @@ const state = {
     images: ["hands/reversePrayerMod.jpg", "hands/pronations.gif"],
   },
 };
-
 // Most JS frameworks have some kind of starting point, an initialization step where things are set up. This is the crude vanilla version of that.
 
 function init() {
