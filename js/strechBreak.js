@@ -3,6 +3,36 @@
 // this is a very crude version of that. Things like https://redux.js.org/ have made maintaining
 // centralized state into an art form.
 // often, state is not local in the browser though, it sits in a database like Firebase (realtime JSON data structure in the cloud) for example.
+
+//timer object
+//
+
+//class for timer
+//to abstract away information
+//only timer should able to access countdown function
+//make function a propert of timer
+
+document.getElementById("start").addEventListener("click", updateCountdown);
+
+const startingMinutes = 5;
+let time = startingMinutes * 60;
+
+const countdownEl = document.getElementById("countdown");
+
+//below will run whether you add an event listener or not bc its being called
+// setInterval(updateCountdown, 1000);
+
+function updateCountdown() {
+  const minutes = Math.floor(time / 60);
+  let seconds = time % 60;
+
+  countdownEl.innerHTML = `${minutes}: ${seconds}`;
+  time--;
+}
+
+//}
+
+//image arrays
 const state = {
   eyes: {
     visible: false,
@@ -35,7 +65,20 @@ const state = {
   },
 };
 
+//counter and function that will do a next
+//counter keeping track of how many times this is clicked, start tier at 0 user click then timer goes up, conduitional logic
+//if click counter is 1 show image that matches button clicked
+//if click counter is more than 1 show image thats next thing in array
+//let click counter = 0, on first click click counter ++ then do conditional
+//else
 // Most JS frameworks have some kind of starting point, an initialization step where things are set up. This is the crude vanilla version of that.
+//next button to perform function, button disable after cetain amount of clicks?
+
+//clikc counter, array of eye images, 6 images, use click counter to go through the images
+//if click counter, show first eleemnt in array, for each click, iterate click counter (clikc counter ++, then display image that is at index that index click counter -1)
+//conditional logic, if click counter is on last image ((6) display image 5 but reset click counter to 0)
+
+//for each click, call function *********
 
 function init() {
   // Going through each item in our state array.
