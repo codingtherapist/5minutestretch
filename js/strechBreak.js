@@ -8,30 +8,30 @@ const state = {
     visible: false,
     container: "#eyesup",
     uiElement: "#eyesnext",
-    images: [
-      "eyes/adream.png",
-      "eyes/blurfloat.gif",
-      "eyePalming.gif",
-      "palm.gif",
-    ],
+    images: ["eyes/thumbGazingg.gif", "eyes/figureEight.gif"],
   },
   neck: {
     visible: false,
     container: "#neckup",
     uiElement: "#necknext",
-    images: ["blue.png", "bluecity.png", "bluecloud.png", "cloudgif.jpeg"],
+    images: ["neck/neckPull.jpg", "neck/neckturn.gif"],
   },
   shoulders: {
     visible: false,
     container: "#shouldersup",
     uiElement: "#shouldersnext",
-    images: ["mushroom.png", "candle.png"],
+    images: [
+      "shoulders/overheadStretch.jpg",
+      "shoulders/posthandclasp.gif",
+      "shoulders/shoulderCross.gif",
+      "shoulders/shoulderpress.gif",
+    ],
   },
   hands: {
     visible: false,
     container: "#handsup",
     uiElement: "#handnext",
-    images: ["rainy.gif", "pinkswirl.png"],
+    images: ["hands/reversePrayerMod.jpg", "hands/pronations.gif"],
   },
 };
 
