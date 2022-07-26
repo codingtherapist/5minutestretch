@@ -6,13 +6,7 @@
 
 //timer object
 //
-
-//class for timer
-//to abstract away information
-//only timer should able to access countdown function
-//make function a propert of timer
-
-document.getElementById("start").addEventListener("click", updateCountdown);
+/*document.getElementById("start").addEventListener("click", updateCountdown);
 
 const startingMinutes = 5;
 let time = startingMinutes * 60;
@@ -20,17 +14,90 @@ let time = startingMinutes * 60;
 const countdownEl = document.getElementById("countdown");
 
 //below will run whether you add an event listener or not bc its being called
-// setInterval(updateCountdown, 1000);
-
 function updateCountdown() {
   const minutes = Math.floor(time / 60);
   let seconds = time % 60;
 
   countdownEl.innerHTML = `${minutes}: ${seconds}`;
   time--;
-}
+  setInterval(updateCountdown, 1000);
+}*/
 
 //}
+let timer;
+function startTimer(duration, display) {
+  let timer = duration,
+    minutes,
+    seconds;
+  setInterval(function () {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
+
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+
+    display.textContent = minutes + ":" + seconds;
+
+    if (--timer < 0) {
+      timer = duration;
+    }
+  }, 1000);
+}
+function resetTimer() {
+  timer = 60 * 5;
+}
+
+document.getElementById("start").addEventListener("click", function () {
+  let fiveMinutes = 60 * 5,
+    display = document.querySelector("#countdown");
+  startTimer(fiveMinutes, display);
+});
+/*
+function resetTimer() {
+  timer = 60 * 5;
+}
+
+window.onload = function () {
+    fiveMinutes = 60 * 5,
+        display = document.querySelector('#time');
+    startTimer(fiveMinutes, display);
+};/*
+
+
+
+
+
+
+/*
+document.getElementById("start").addEventListener("click", startCountDown);
+
+function startCountDown(i, p, f) {
+  var pause = p;
+  var fn = f;
+  var countDownObj = document.getElementById("countDown");
+ 
+ 
+
+  countDownObj.count = function (i) {
+    //  write out count
+    countDownObj.innerHTML = i;
+    if (i == 0) {
+      //  execute function
+      fn();
+      startCountDown(5, 1000, myFunction);
+      //  stop
+      return;
+    }
+    setTimeout(function () {
+      //  repeat
+      countDownObj.count(i - 1);
+    }, pause);
+  };
+  //  set it going
+  countDownObj.count(i);
+}
+
+function myFunction() {}*/
 
 //image arrays
 const state = {
@@ -65,20 +132,7 @@ const state = {
   },
 };
 
-//counter and function that will do a next
-//counter keeping track of how many times this is clicked, start tier at 0 user click then timer goes up, conduitional logic
-//if click counter is 1 show image that matches button clicked
-//if click counter is more than 1 show image thats next thing in array
-//let click counter = 0, on first click click counter ++ then do conditional
-//else
 // Most JS frameworks have some kind of starting point, an initialization step where things are set up. This is the crude vanilla version of that.
-//next button to perform function, button disable after cetain amount of clicks?
-
-//clikc counter, array of eye images, 6 images, use click counter to go through the images
-//if click counter, show first eleemnt in array, for each click, iterate click counter (clikc counter ++, then display image that is at index that index click counter -1)
-//conditional logic, if click counter is on last image ((6) display image 5 but reset click counter to 0)
-
-//for each click, call function *********
 
 function init() {
   // Going through each item in our state array.
