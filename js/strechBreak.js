@@ -5,20 +5,35 @@
 // often, state is not local in the browser though, it sits in a database like Firebase (realtime JSON data structure in the cloud) for example.
 
 //timer object
-const startingMinutes = 5;
-let time = startingMinutes * 60;
+//}
+let timer;
+function startTimer(duration, display) {
+  let timer = duration,
+    minutes,
+    seconds;
+  setInterval(function () {
+    minutes = parseInt(timer / 60, 10);
+    seconds = parseInt(timer % 60, 10);
 
-const countdownEl = document.getElementById("countdown");
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    seconds = seconds < 10 ? "0" + seconds : seconds;
 
-setInterval(updateCountdown, 1000);
+    display.textContent = minutes + ":" + seconds;
 
-function updateCountdown() {
-  const minutes = Math.floor(time / 60);
-  let seconds = time % 60;
-
-  countdownEl.innerHTML = `${minutes}: ${seconds}`;
-  time--;
+    if (--timer < 0) {
+      timer = duration;
+    }
+  }, 1000);
 }
+function resetTimer() {
+  timer = 60 * 5;
+}
+
+document.getElementById("start").addEventListener("click", function () {
+  let fiveMinutes = 60 * 5,
+    display = document.querySelector("#countdown");
+  startTimer(fiveMinutes, display);
+});
 
 //stretch images
 const state = {
