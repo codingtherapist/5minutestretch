@@ -56,6 +56,7 @@ document.getElementById("start").addEventListener("click", function () {
 function resetTimer() {
   timer = 60 * 5;
 }
+<<<<<<< Updated upstream
 
 window.onload = function () {
     fiveMinutes = 60 * 5,
@@ -100,6 +101,9 @@ function startCountDown(i, p, f) {
 function myFunction() {}*/
 
 //image arrays
+=======
+//stretch images
+>>>>>>> Stashed changes
 const state = {
   eyes: {
     visible: false,
